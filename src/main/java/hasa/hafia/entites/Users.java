@@ -1,5 +1,6 @@
 package hasa.hafia.entites;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Users {
+public class Users implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String nom;
+	private int id,etat;
+	private String nom,prenom,password,email;
 	
 	@OneToMany (mappedBy = "users")
 	private List<Roles> roles= new ArrayList<Roles>();
@@ -27,10 +32,14 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(int id, String nom, List<Roles> roles, List<Offres> offres) {
+	public Users(int id, String nom, String prenom, String password, String email, List<Roles> roles,
+			List<Offres> offres) {
 		super();
 		this.id = id;
 		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.email = email;
 		this.roles = roles;
 		this.offres = offres;
 	}
@@ -51,6 +60,30 @@ public class Users {
 		this.nom = nom;
 	}
 
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public List<Roles> getRoles() {
 		return roles;
 	}
@@ -66,7 +99,18 @@ public class Users {
 	public void setOffres(List<Offres> offres) {
 		this.offres = offres;
 	}
-	
-	
+
+	public Users(int etat) {
+		super();
+		this.etat = etat;
+	}
+
+	public int getEtat() {
+		return etat;
+	}
+
+	public void setEtat(int etat) {
+		this.etat = etat;
+	}
 
 }
