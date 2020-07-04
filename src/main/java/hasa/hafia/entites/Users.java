@@ -1,13 +1,11 @@
 package hasa.hafia.entites;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Users {
@@ -17,24 +15,18 @@ public class Users {
 	private String nom;
 	private String username;
 	private String password;
+
+	@OneToMany (mappedBy = "users", cascade = CascadeType.ALL)
+	private List<Roles> roles = new ArrayList<>();
 	
 	@OneToMany (mappedBy = "users")
-	private List<Roles> roles= new ArrayList<Roles>();
-	
-	@OneToMany (mappedBy = "users")
-	private List<Offres> offres= new ArrayList<Offres>();
+	private List<Offres> offres = new ArrayList<>();
 
-	public Users() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Users() { }
 
-	public Users(int id, String nom, List<Roles> roles, List<Offres> offres) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.roles = roles;
-		this.offres = offres;
+	public Users(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
 	public int getId() {

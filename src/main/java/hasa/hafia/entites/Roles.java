@@ -1,11 +1,6 @@
 package hasa.hafia.entites;
 
-import javax.annotation.Generated;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 @Entity
 public class Roles {
 	@Id
@@ -13,7 +8,7 @@ public class Roles {
 	private int id;
 	private String libelle;
 	@ManyToOne
-	private Users users=new Users();
+	private Users users = new Users();
 	
 	public Roles() {
 		super();
