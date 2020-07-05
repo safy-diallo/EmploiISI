@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
 
-    @Query("from Users u join fetch u.roles")
+    @Query("from Users u join fetch u.roles where u.username =:username")
     Optional<Users> getByUsername(String username);
 }

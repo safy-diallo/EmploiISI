@@ -21,15 +21,25 @@ public class EmploiIsiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Users user = new Users();
-		user.setNom("Diallo Boubacar");
-		user.setUsername("bbtanou");
-		user.setPassword("tanou");
+		Users bbtanou = new Users();
+		bbtanou.setNom("Diallo Boubacar");
+		bbtanou.setUsername("bbtanou");
+		bbtanou.setPassword("tanou");
 		Roles role = new Roles();
 		role.setLibelle("ROLE_DEMANDEUR");
-		role.setUsers(user);
-		user.getRoles().add(role);
-		userService.create(user);
+		role.setUsers(bbtanou);
+		bbtanou.getRoles().add(role);
+		userService.create(bbtanou);
+
+		Users safi = new Users();
+		safi.setNom("Safiatou Diallo");
+		safi.setUsername("safi");
+		safi.setPassword("safi");
+		Roles recruteur = new Roles();
+		recruteur.setLibelle("ROLE_RECRUTEUR");
+		recruteur.setUsers(safi);
+		safi.getRoles().add(recruteur);
+		userService.create(safi);
 
 	}
 }
