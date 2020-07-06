@@ -1,8 +1,16 @@
 package hasa.hafia;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
+=======
+import hasa.hafia.entites.Roles;
+import hasa.hafia.entites.Users;
+import hasa.hafia.repository.RoleRepository;
+import hasa.hafia.repository.UserRepository;
+import hasa.hafia.service.UserService;
+>>>>>>> dev
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +24,11 @@ import hasa.hafia.entites.Users;
 
 @SpringBootApplication
 public class EmploiIsiApplication implements CommandLineRunner {
+<<<<<<< HEAD
+=======
+	@Autowired private UserService userService;
+	@Autowired private RoleRepository roleRepository;
+>>>>>>> dev
 
 	@Autowired 
 	private IUsers userdao;
@@ -59,6 +72,7 @@ public class EmploiIsiApplication implements CommandLineRunner {
 		user.setRoles(rolesList1);
 		userdao.save(user);
 
+<<<<<<< HEAD
 		// User 2
 		Users users= new Users();
 		users.setNom("Bah");
@@ -81,5 +95,29 @@ public class EmploiIsiApplication implements CommandLineRunner {
 		utilisateur.forEach(p->{
 			System.out.println(p.getPrenom() + "  " + p.getNom());
 		});
+=======
+	@Override
+	public void run(String... args) throws Exception {
+		Users bbtanou = new Users();
+		bbtanou.setNom("Diallo Boubacar");
+		bbtanou.setUsername("bbtanou");
+		bbtanou.setPassword("tanou");
+		Roles role = new Roles();
+		role.setLibelle("ROLE_DEMANDEUR");
+		role.setUsers(bbtanou);
+		bbtanou.getRoles().add(role);
+		userService.create(bbtanou);
+
+		Users safi = new Users();
+		safi.setNom("Safiatou Diallo");
+		safi.setUsername("safi");
+		safi.setPassword("safi");
+		Roles recruteur = new Roles();
+		recruteur.setLibelle("ROLE_RECRUTEUR");
+		recruteur.setUsers(safi);
+		safi.getRoles().add(recruteur);
+		userService.create(safi);
+
+>>>>>>> dev
 	}
 }

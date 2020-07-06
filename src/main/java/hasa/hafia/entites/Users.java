@@ -1,14 +1,13 @@
 package hasa.hafia.entites;
 
 import java.io.Serializable;
+
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Users implements Serializable{
@@ -28,26 +27,26 @@ public class Users implements Serializable{
 	private String prenom;
 	private int etat;
 
+
+
+	@OneToMany (mappedBy = "users", cascade = CascadeType.ALL)
+	private List<Roles> roles = new ArrayList<>();
 	
 	@OneToMany (mappedBy = "users")
-	private List<Roles> roles= new ArrayList<Roles>();
-	
-	@OneToMany (mappedBy = "users")
-	private List<Offres> offres= new ArrayList<Offres>();
+	private List<Offres> offres = new ArrayList<>();
 
-	public Users() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Users() { }
 
-	public Users(int id, String nom, String prenom, String password, String email, List<Roles> roles,
-			List<Offres> offres) {
+	public Users(int id, String nom, String username, String password, String email, String prenom, int etat,
+			List<Roles> roles, List<Offres> offres) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.prenom = prenom;
+		this.etat = etat;
 		this.roles = roles;
 		this.offres = offres;
 	}
@@ -67,40 +66,6 @@ public class Users implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	
-
-	public List<Roles> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Roles> roles) {
-		this.roles = roles;
-	}
-
-	public List<Offres> getOffres() {
-		return offres;
-	}
-
-	public void setOffres(List<Offres> offres) {
-		this.offres = offres;
-	}
-
-
-	public Users(int etat) {
-		super();
-		this.etat = etat;
-	}
-
-	public int getEtat() {
-		return etat;
-	}
-
-	public void setEtat(int etat) {
-		this.etat = etat;
-	}
-
-
 
 	public String getUsername() {
 		return username;
@@ -133,5 +98,31 @@ public class Users implements Serializable{
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
+	public int getEtat() {
+		return etat;
+	}
+
+	public void setEtat(int etat) {
+		this.etat = etat;
+	}
+
+	public List<Roles> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Roles> roles) {
+		this.roles = roles;
+	}
+
+	public List<Offres> getOffres() {
+		return offres;
+	}
+
+	public void setOffres(List<Offres> offres) {
+		this.offres = offres;
+	}
+
+	
 	
 }

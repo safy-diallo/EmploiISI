@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
+
 @Entity
 public class Roles implements Serializable {
 	/**
@@ -18,7 +21,7 @@ public class Roles implements Serializable {
 	private int id;
 	private String libelle;
 	@ManyToOne
-	private Users users=new Users();
+	private Users users = new Users();
 	
 	public Roles() {
 		super();
