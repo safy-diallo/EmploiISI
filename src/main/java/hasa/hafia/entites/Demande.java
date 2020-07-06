@@ -11,7 +11,10 @@ public class Demande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String nom,prenom,motivation,niveauEtude;
+	private String nom;
+	private String prenom;
+	private String motivation;
+	private String niveauEtude;
 	private int experience;  
 	@ManyToOne
 	private Offres offres = new Offres();

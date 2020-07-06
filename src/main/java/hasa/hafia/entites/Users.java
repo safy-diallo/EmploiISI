@@ -18,8 +18,16 @@ public class Users implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id,etat;
-	private String nom,prenom,password,email;
+	
+
+	private int id;
+	private String nom;
+	private String username;
+	private String password;
+	private String email;
+	private String prenom;
+	private int etat;
+
 	
 	@OneToMany (mappedBy = "users")
 	private List<Roles> roles= new ArrayList<Roles>();
@@ -60,12 +68,46 @@ public class Users implements Serializable{
 		this.nom = nom;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	
+
+	public List<Roles> getRoles() {
+		return roles;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setRoles(List<Roles> roles) {
+		this.roles = roles;
+	}
+
+	public List<Offres> getOffres() {
+		return offres;
+	}
+
+	public void setOffres(List<Offres> offres) {
+		this.offres = offres;
+	}
+
+
+	public Users(int etat) {
+		super();
+		this.etat = etat;
+	}
+
+	public int getEtat() {
+		return etat;
+	}
+
+	public void setEtat(int etat) {
+		this.etat = etat;
+	}
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -84,33 +126,12 @@ public class Users implements Serializable{
 		this.email = email;
 	}
 
-	public List<Roles> getRoles() {
-		return roles;
+	public String getPrenom() {
+		return prenom;
 	}
 
-	public void setRoles(List<Roles> roles) {
-		this.roles = roles;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
-
-	public List<Offres> getOffres() {
-		return offres;
-	}
-
-	public void setOffres(List<Offres> offres) {
-		this.offres = offres;
-	}
-
-	public Users(int etat) {
-		super();
-		this.etat = etat;
-	}
-
-	public int getEtat() {
-		return etat;
-	}
-
-	public void setEtat(int etat) {
-		this.etat = etat;
-	}
-
+	
 }
