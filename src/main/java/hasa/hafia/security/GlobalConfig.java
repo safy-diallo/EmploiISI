@@ -27,7 +27,7 @@ public class GlobalConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests(e -> {
+       /* http.authorizeRequests(e -> {
             e.antMatchers("/login")
                         .permitAll()
                     .anyRequest().authenticated();
@@ -35,7 +35,7 @@ public class GlobalConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().cors().disable();
         http.exceptionHandling(e -> {
             e.accessDeniedHandler(new GlobalExceptionHandler());
-        });
+        });*/
     }
 
     @Override
