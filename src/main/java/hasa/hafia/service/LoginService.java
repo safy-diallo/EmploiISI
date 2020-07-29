@@ -24,9 +24,10 @@ public class LoginService {
         return new Users(details.getUsername(), details.getPassword());
     }
 
-    public String logout() {
-        //todo...
-        return "redirection apres traitement du logout";
+    public void logout() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication.setAuthenticated(false);
+        SecurityContextHolder.clearContext();
     }
 
     @Autowired
