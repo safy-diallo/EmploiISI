@@ -22,7 +22,7 @@ public class EmploiIsiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*Users bbtanou = new Users();
+		Users bbtanou = new Users();
 		bbtanou.setNom("Diallo Boubacar");
 		bbtanou.setUsername("bbtanou");
 		bbtanou.setPassword("tanou");
@@ -40,7 +40,7 @@ public class EmploiIsiApplication implements CommandLineRunner {
 		recruteur.setLibelle("ROLE_RECRUTEUR");
 		recruteur.setUsers(safi);
 		safi.getRoles().add(recruteur);
-		userService.create(safi);*/
+		userService.create(safi);
 
 	}
 	}

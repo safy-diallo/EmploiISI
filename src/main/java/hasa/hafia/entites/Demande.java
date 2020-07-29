@@ -15,15 +15,16 @@ public class Demande {
 	private String prenom;
 	private String motivation;
 	private String niveauEtude;
-	private int experience;  
+	private int experience;
 	@ManyToOne
 	private Offres offres = new Offres();
 	public Demande() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Demande(Long id, String nom, String prenom, String motivation, String niveauEtude, int experience,
-			Offres offres) {
+				   Offres offres) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -75,7 +76,7 @@ public class Demande {
 	public void setOffres(Offres offres) {
 		this.offres = offres;
 	}
-	
-	
+
+
 
 }

@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -27,15 +27,28 @@ public class GlobalConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       /* http.authorizeRequests(e -> {
-            e.antMatchers("/login")
+        http.authorizeRequests(e -> {
+            e.antMatchers("/login", "/logout")
                         .permitAll()
                     .anyRequest().authenticated();
         });
-        http.csrf().disable().cors().disable();
+
+        http.formLogin(e -> e.loginPage("/login")
+                .defaultSuccessUrl("/")
+                .loginProcessingUrl("/login")
+                .failureForwardUrl("/login")
+        );
+
+        http.logout(e -> e.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                .clearAuthentication(true)
+        );
+
         http.exceptionHandling(e -> {
             e.accessDeniedHandler(new GlobalExceptionHandler());
-        });*/
+        });
+
+        http.csrf().disable().cors().disable();
     }
 
     @Override
