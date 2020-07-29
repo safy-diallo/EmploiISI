@@ -10,20 +10,21 @@ import javax.persistence.ManyToOne;
 public class Demande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private String nom;
 	private String prenom;
 	private String motivation;
 	private String niveauEtude;
-	private int experience;  
+	private int experience;
 	@ManyToOne
 	private Offres offres = new Offres();
 	public Demande() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Demande(int id, String nom, String prenom, String motivation, String niveauEtude, int experience,
-			Offres offres) {
+
+	public Demande(Long id, String nom, String prenom, String motivation, String niveauEtude, int experience,
+				   Offres offres) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -33,10 +34,10 @@ public class Demande {
 		this.experience = experience;
 		this.offres = offres;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNom() {
@@ -75,6 +76,7 @@ public class Demande {
 	public void setOffres(Offres offres) {
 		this.offres = offres;
 	}
-	
+
+
 
 }

@@ -1,17 +1,18 @@
 package hasa.hafia;
 
-import hasa.hafia.entites.Roles;
-import hasa.hafia.entites.Users;
-import hasa.hafia.repository.RoleRepository;
-import hasa.hafia.repository.UserRepository;
-import hasa.hafia.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import hasa.hafia.entites.Roles;
+import hasa.hafia.entites.Users;
+import hasa.hafia.repository.RoleRepository;
+import hasa.hafia.service.UserService;
+
 @SpringBootApplication
 public class EmploiIsiApplication implements CommandLineRunner {
+
 	@Autowired private UserService userService;
 	@Autowired private RoleRepository roleRepository;
 
@@ -42,4 +43,4 @@ public class EmploiIsiApplication implements CommandLineRunner {
 		userService.create(safi);
 
 	}
-}
+	}
