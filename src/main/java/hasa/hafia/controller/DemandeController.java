@@ -24,11 +24,16 @@ public class DemandeController {
 
     @GetMapping
     public String index (Model model) {
-        model.addAttribute("liste_candidat", service.findAll());//Pour la liste
-        model.addAttribute("demande", new Demande());//Pour le formulaire
+        model.addAttribute("liste_candidat", service.findAll());
+        model.addAttribute("demande", new Demande());
         return DEFAULT_VIEW;
     }
 
+    
+    
+    
+    
+    
     @PostMapping
     public String add(@ModelAttribute("demande") Demande demande) {
         demande.setOffres(null);

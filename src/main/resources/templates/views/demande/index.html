@@ -18,7 +18,7 @@
 </head>
 <body>
 <H2>Heeee safi</H2>
-<div class="nav navbar-default" >
+<div class="nav navbar-default">
     <ul class="nav navbar-nav">
         <li><a th:href="@{/Offre/liste}">Offre d'emploi</a></li>
         <li><a th:href="@{/Candidat/liste}">Demande d'emploi</a></li>
@@ -36,7 +36,7 @@
             <form method="POST" th:action="@{/demandes}" th:object="${demande}" th:method="post">
                 <div class="from-group">
                     <label class="from-label">Identifiant</label>
-                    <input class="form-control" type="text" name="id"  th:field="${demande.id}"/>
+                    <input class="form-control" type="text" name="id"  th:field="${demande.id}" readonly/>
                 </div>
 
                 <div class="from-group">
