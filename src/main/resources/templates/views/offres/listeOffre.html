@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
@@ -35,35 +34,29 @@
     
   </div>
 </nav>
-    <div class="container col-sm-9 col-md-4" >
+<br/>
+	<div class="container col-sm-6 col-md-8" >
     <div class="panel panel-primary">
-        <div class="panel-heading" style="text-align:center;font-size:2em">AJOUTEZ UNE OFFRE</div>
-       	<div class="panel-body" style=" margin: 20px;">
-            <form method="POST" th:action="@{/offres}" th:object="${offre}" th:method="post">
-                <div class="from-group">
-                    <label class="from-label">Identifiant</label>
-                    <input class="form-control" type="text" name="id"  th:field="${offre.id}" readonly/>
-                </div>
-
-                <div class="from-group">
-                    <label class="from-label">Nom de l'entreprise</label>
-                    <input class="form-control" type="text" name="nomEntreprise" th:field="${offre.nomEntreprise}"/>
-                </div>
-                <div class="from-group">
-                    <label class="from-label">Description</label>
-                    <textarea class="form-control" type="text" name="descriptionOffre"  th:field="${offre.descriptionOffre}"></textarea>
+    
+        <div class="panel-heading" style="text-align:center;font-size:2em">LISTE DES OFFRES</div>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered">
+                <tr >
+                    <th style="text-align:center">Identifiant</th>
+                    <th style="text-align:center">Nom de l'entreprise</th> 
+                    <th style="text-align:center">Description de l'offre</th>          
+                    <th style="text-align:center">Action</th>                   
+                </tr>
+                <tr th:each="off:${liste_offres}">
+                    <td th:text="${off.id}"></td>
+                    <td th:text="${off.nomEntreprise}"></td>
+                    <td th:text="${off.descriptionOffre}"></td>                  
+                    <td><a th:href="@{/demandes/add}">Postulez</a></td>
                     
-                </div>          
-                <br/>
-                <div class="from-group">
-                    <input class="btn btn-success" type="submit" name="valider" value="Valider" />
-                    <input class="btn btn-danger" type="reset" name="annuler" value="Annuler" />
-                </div>
-            </form>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
-
-    
 </body>
 </html>

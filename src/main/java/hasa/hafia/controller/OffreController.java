@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 public class OffreController {
    
 	private final OffreService service;
-    private static final String DEFAULT_VIEW = "views/offres/index";
+    private static final String DEFAULT_VIEW = "views/offres";
     private static final String DEFAULT_REDIRECTION = "redirect:/offres";
 
     public OffreController(OffreService service) {
@@ -30,19 +30,31 @@ public class OffreController {
     }
 
     @GetMapping
-    public String index (Model model) {
-        model.addAttribute("liste_offres", service.findAll());
-        model.addAttribute("offre", new Offres());
-        return DEFAULT_VIEW;
+    public String index () {
+        //model.addAttribute("liste_offres", service.findAll());
+        //model.addAttribute("offre", new Offres());
+        return DEFAULT_VIEW.concat("/list");
     }
-    
+    @PreAuthorize("hasAnyRole('ROLE_RECRUTEUR')")
+    @GetMapping("/listeOffre")
+    public String listeDemande(Model model){
+    	model.addAttribute("liste_offres", service.findAll());        
+         return DEFAULT_VIEW.concat("/listeOffre");
+    }
+    @PreAuthorize("hasAnyRole('ROLE_RECRUTEUR')")
+    @GetMapping("/ajoutOffre")
+    public String addDemande(Model model){
+    	model.addAttribute("offre", new Offres());
+         return DEFAULT_VIEW.concat("/add");
+    }
+    @PreAuthorize("hasAnyRole('ROLE_RECRUTEUR')")
     @PostMapping
     public String add(@ModelAttribute("offre") Offres offre) {
         offre.setDemandes(null);
         service.create(offre);
         return DEFAULT_REDIRECTION;
     }
-    
+    @PreAuthorize("hasAnyRole('ROLE_RECRUTEUR')")
     @GetMapping("/edit")
     public String update(HttpServletRequest request, Model model){
         final Long id = Long.valueOf(request.getParameter("id"));
@@ -50,7 +62,7 @@ public class OffreController {
         model.addAttribute("offre", offres);
         return DEFAULT_VIEW;
     }
-
+    @PreAuthorize("hasAnyRole('ROLE_RECRUTEUR')")
     @GetMapping("/delete")
     public String delete (long id, Model model) {
         service.delete(id);
