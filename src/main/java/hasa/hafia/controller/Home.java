@@ -27,8 +27,9 @@ public class Home {
             UserDetails details = (UserDetails) authentication.getPrincipal();
             if (details != null) {
                 Users users = new Users(details.getUsername(), details.getPassword());
-                model.addAttribute("user", users);
+                model.addAttribute("user", users);               
                 return "index";
+                
             }
         }
         System.out.println("No am not authenticated");

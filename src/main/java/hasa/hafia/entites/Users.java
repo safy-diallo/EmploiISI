@@ -23,7 +23,7 @@ public class Users implements Serializable{
 	@OneToMany (mappedBy = "users", cascade = CascadeType.ALL)
 	private List<Roles> roles = new ArrayList<>();
 	
-	@OneToMany (mappedBy = "users")
+	@OneToMany (mappedBy = "users",cascade = CascadeType.ALL)
 	private List<Offres> offres = new ArrayList<>();
 
 	public Users() { }
