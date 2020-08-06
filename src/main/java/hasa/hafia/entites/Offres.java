@@ -3,6 +3,7 @@ package hasa.hafia.entites;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,19 +15,19 @@ import javax.persistence.OneToMany;
 public class Offres {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private String nomEntreprise;
 	private String descriptionOffre;
 	
 	@OneToMany(mappedBy = "offres")
 	private List<Demande> demandes = new ArrayList<Demande>();
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	private Users users= new Users();
 	public Offres() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Offres(int id, String nomEntreprise, String descriptionOffre, List<Demande> demandes, Users users) {
+	public Offres(Long id, String nomEntreprise, String descriptionOffre, List<Demande> demandes, Users users) {
 		super();
 		this.id = id;
 		this.nomEntreprise = nomEntreprise;
@@ -34,10 +35,10 @@ public class Offres {
 		this.demandes = demandes;
 		this.users = users;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNomEntreprise() {
@@ -64,6 +65,7 @@ public class Offres {
 	public void setUsers(Users users) {
 		this.users = users;
 	}
+	
 	
 
 }
