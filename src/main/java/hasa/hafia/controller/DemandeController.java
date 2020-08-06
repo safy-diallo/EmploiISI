@@ -30,28 +30,31 @@ public class DemandeController {
         //model.addAttribute("demande", new Demande());
         return DEFAULT_VIEW.concat("/index");
     }
- @PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
+    @PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
     @GetMapping("/list")
     public String listeDemande(Model model){
-    	 model.addAttribute("liste_candidat", service.findAll());
-         
-         return DEFAULT_VIEW.concat("/list");
+        model.addAttribute("liste_candidat", service.findAll());
+
+        return DEFAULT_VIEW.concat("/list");
 
     }
-@PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
+
+    @PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
     @GetMapping("/add")
     public String addDemande(Model model){
-    	 model.addAttribute("demande", new Demande());
-         return DEFAULT_VIEW.concat("/add");
+        model.addAttribute("demande", new Demande());
+        return DEFAULT_VIEW.concat("/add");
     }
-//@PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')") 
+
+    //@PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
     @PostMapping
     public String add(@ModelAttribute("demande") Demande demande) {
         demande.setOffres(null);
         service.create(demande);
         return DEFAULT_REDIRECTION.concat("/list");
     }
-@PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
+
+    @PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
     @GetMapping("/edit")
     public String update(HttpServletRequest request, Model model){
         final Long id = Long.valueOf(request.getParameter("id"));
@@ -59,7 +62,8 @@ public class DemandeController {
         model.addAttribute("demande", demande);
         return DEFAULT_REDIRECTION.concat("/list");
     }
-@PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
+
+    @PreAuthorize("hasAnyRole('ROLE_DEMANDEUR')")
     @GetMapping("/delete")
     public String delete (long id, Model model) {
         service.delete(id);

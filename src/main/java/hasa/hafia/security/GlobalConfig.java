@@ -34,7 +34,7 @@ public class GlobalConfig extends WebSecurityConfigurerAdapter {
         });
 
         http.formLogin(e -> e.loginPage("/login")
-                .defaultSuccessUrl("/")
+                .successHandler(authenticationHandler())
                 .loginProcessingUrl("/login")
                 .failureForwardUrl("/login")
         );
@@ -60,6 +60,10 @@ public class GlobalConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    public SuccessAuthenticationHandler authenticationHandler(){
+        return new SuccessAuthenticationHandler();
     }
 
     @Autowired

@@ -33,7 +33,7 @@ public class OffreController {
     public String index () {
         //model.addAttribute("liste_offres", service.findAll());
         //model.addAttribute("offre", new Offres());
-        return DEFAULT_VIEW.concat("/list");
+        return DEFAULT_VIEW.concat("/index");
     }
     @PreAuthorize("hasAnyRole('ROLE_RECRUTEUR')")
     @GetMapping("/listeOffre")

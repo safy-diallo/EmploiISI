@@ -1,6 +1,7 @@
 package hasa.hafia.controller;
 
 import hasa.hafia.entites.LoginRequest;
+import hasa.hafia.entites.Roles;
 import hasa.hafia.entites.Users;
 import hasa.hafia.service.LoginService;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/login")
